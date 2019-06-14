@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{ movie.title }}</title>
+</head>
+<body>
+    <a href="{% url 'movies_list' %}">Back to Movies</a>
+    <h1>{{ movie.title }}</h1>
+    <h3>Episode: {{ movie.episodeID }}</h3>
+    <h3>Release Date: {{movie.releaseDate }}</h3>
+    <h3>Director: {{ movie.director }}</h3>
+    <h3>Producers: {% for producer in movie.producers %}{{ producer }}, {% endfor %}</h3>
+    <h3>Trailer: <p>{{ movie.openingCrawl }}</p></h3>
+    <h3>Characters: </h3>
+    <ul>
+        {% for character in movie.characterConnection.characters %}
+            <li><a href="{% url 'character_info' character.id %}">{{ character.name }}</a></li>
+        {% endfor %}
+    </ul>
+    <h3>Planets: </h3>
+    <ul>
+        {% for planet in movie.planetConnection.planets %}
+            <li><a href="{% url 'planet_info' planet.id %}">{{ planet.name }}</a></li>
+        {% endfor %}
+    </ul>
+    <h3>Starships: </h3>
+    <ul>
+        {% for starship in movie.starshipConnection.starships %}
+            <li><a href="{% url 'ship_info' starship.id %}">{{ starship.name }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

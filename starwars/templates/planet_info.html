@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{ planet.name }}</title>
+</head>
+<body>
+    <a href="{% url 'movies_list' %}">Back to Movies</a>
+    <h1>{{ planet.name }}</h1>
+    <h3>Climates: {% for climate in planet.climates %} {{ climate }}, {% endfor %}</h3>
+    <h3>Diameter: {{ planet.diameter }}</h3>
+    <h3>Gravity: {{ planet.gravity }}</h3>
+    <h3>Population: {{ planet.population }}</h3>
+    <h3>Orbital Period: {{ planet.orbitalPeriod }}</h3>
+    <h3>Rotation Period: {{ planet.rotationPeriod }}</h3>
+    <h3>Surface Water: {{ planet.surfaceWater }}</h3>
+    <h3>Terrains: {% for terrain in planet.terrains %} {{ terrain }}, {% endfor %}</h3>
+    <h3>Residents: </h3>
+    <ul>
+        {% for person in planet.residentConnection.residents %}
+            <li><a href="{% url 'character_info' person.id %}">{{ person.name }}</a></li>
+        {% endfor %}
+    </ul>
+    <h3>Movies: </h3>
+    <ul>
+        {% for movie in planet.filmConnection.films %}
+            <li><a href="{% url 'movie_info' movie.id %}">{{ movie.title }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

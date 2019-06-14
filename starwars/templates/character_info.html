@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{ character.name }}</title>
+</head>
+<body>
+    <a href="{% url 'movies_list' %}">Back to Movies</a>
+    <h1>{{ character.name }}</h1>
+    <h3>Birth Year: {{ character.birthYear }}</h3>
+    <h3>Gender: {{ character.gender }}</h3>
+    <h3>Eye Color: {{ character.eyeColor }}</h3>
+    <h3>Hair Color: {{ character.hairColor }}</h3>
+    <h3>Skin Color: {{ character.skinColor }}</h3>
+    <h3>Height: {{ character.height }}</h3>
+    <h3>Mass: {{ character.mass }}</h3>
+    <h3>Home World: <a href="{% url 'planet_info' character.homeworld.id %}">{{ character.homeworld.name }}</a></h3>
+    <h3>Movies: </h3>
+    <ul>
+        {% for movie in character.filmConnection.films %}
+            <li><a href="{% url 'movie_info' movie.id %}">{{ movie.title }}</a></li>
+        {% endfor %}
+    </ul>
+    <h3>Starships: </h3>
+    <ul>
+        {% for ship in character.starshipConnection.starships %}
+            <li><a href="{% url 'ship_info' ship.id %}">{{ ship.name }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

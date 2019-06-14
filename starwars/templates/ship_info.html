@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{ ship.name }}</title>
+</head>
+<body>
+    <a href="{% url 'movies_list' %}">Back to Movies</a>
+    <h1>{{ ship.name }}</h1>
+    <h3>Model: {{ ship.model }}</h3>
+    <h3>Class: {{ ship.starshipClass }}</h3>
+    <h3>Manufactures: {% for man in ship.manufacturers %} {{ man }}, {% endfor %}</h3>
+    <h3>Cost: {{ ship.costInCredits }}</h3>
+    <h3>Length: {{ ship.length }}</h3>
+    <h3>Crew: {{ ship.crew }}</h3>
+    <h3>Passengers: {{ ship.passengers }}</h3>
+    <h3>Max Atmosphering Speed: {{ ship.maxAtmospheringSpeed }}</h3>
+    <h3>Hyper Drive Rating: {{ ship.hyperdriveRating }}</h3>
+    <h3>MGLT: {{ ship.MGLT }}</h3>
+    <h3>Cargo Capacity: {{ ship.cargoCapacity }}</h3>
+    <h3>Consumables: {{ ship.consumables }}</h3>
+    <h3>Movies: </h3>
+    <ul>
+        {% for movie in ship.filmConnection.films %}
+            <li><a href="{% url 'movie_info' movie.id %}">{{ movie.title }}</a></li>
+        {% endfor %}
+    </ul>
+    <h3>Pilots: </h3>
+    <ul>
+        {% for pilot in ship.pilotConnection.pilots %}
+            <li><a href="{% url 'character_info' pilot.id %}">{{ pilot.name }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

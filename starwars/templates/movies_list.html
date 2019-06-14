@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>StarWars Movies</title>
+    <style>
+        table {width: 100%}
+        th, td {text-align: left; padding: 15px; border: 1px solid black}
+        tr:nth-child(even) {background-color: #dddddd}
+    </style>
+</head>
+<body>
+    <table style="width:100%">
+        <caption><h1>StarWars Movies</h1></caption>
+        <tr>
+            <th>Title</th>
+            <th>Episode</th>
+            <th>Year</th>
+            <th>Director</th>
+            <th>Producers</th>
+        </tr>
+        {% for movie in movies %}
+            <tr>
+                <td><a href="{% url 'movie_info' movie.node.id %}">{{ movie.node.title }}</a></td>
+                <td>{{ movie.node.episodeID }}</td>
+                <td>{{ movie.node.releaseDate }}</td>
+                <td>{{ movie.node.director }}</td>
+                <td>
+                    {% for producer in movie.node.producers %}
+                        {{ producer }}, 
+                    {% endfor %}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

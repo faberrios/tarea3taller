@@ -25,7 +25,7 @@ SECRET_KEY = ')czo@5msiy^=fr8=ohg4cq@h=9-$z7un(25d7$y1twkziju^=z'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'faberrios.pythonanywhere.com']
 
 
 # Application definition
